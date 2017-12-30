@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Page;
 
 class PagesController extends Controller
 {
@@ -14,7 +15,8 @@ class PagesController extends Controller
      */
     public function index()
     {
-        return PagesController::class;
+        $pages = Page::all();
+        return view('admin.pages.index', compact('pages'));
     }
 
     /**
