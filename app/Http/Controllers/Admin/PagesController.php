@@ -15,7 +15,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $pages = Page::all();
+        $pages = Page::paginate(15);
         return view('admin.pages.index', compact('pages'));
     }
 
@@ -26,7 +26,7 @@ class PagesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -48,7 +48,8 @@ class PagesController extends Controller
      */
     public function show($id)
     {
-        //
+        $page = Page::findOrFail($id);
+        return view('admin.pages.show', compact('page'));
     }
 
     /**
@@ -59,7 +60,8 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = Page::findOrFail($id);
+        return view('admin.pages.edit', compact('page'));
     }
 
     /**
