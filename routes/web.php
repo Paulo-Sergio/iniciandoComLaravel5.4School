@@ -15,4 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('pages', 'Admin\PagesController');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    Route::resource('pages', 'Admin\PagesController');
+});
+
+/**
+ * php artisan make:auth
+ * - Authentication scaffolding generated successfully.
+ */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
